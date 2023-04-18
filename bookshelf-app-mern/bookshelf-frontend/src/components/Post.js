@@ -1,13 +1,13 @@
 import React from 'react'
 import './Post.css'
-import { Avatar } from '@material-ui/core'
+import  Avatar  from '@mui/material/Avatar';
 const Post = () => {
  return (
  <div className="post">
     <div className="post__header">
     <Avatar
  className="post__avatar"
- alt="TWD"
+ alt="giselle"
  src="/static/images/avatar/1.jpg"
  />
     
