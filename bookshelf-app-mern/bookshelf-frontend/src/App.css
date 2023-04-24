@@ -15,3 +15,9 @@ app__header, and the app__headerImage class
  height: 40px;
 }
 
+.app__signup {
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+}
+

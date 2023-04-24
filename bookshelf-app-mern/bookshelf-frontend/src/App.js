@@ -11,9 +11,9 @@ function getModalStyle() {
   const top = 50;
   const left = 50;
   return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
+    top: `50%`,
+    left: `50%`,
+    transform: `translate(-50%, -50%)`,
   };
 }
 
@@ -25,6 +25,10 @@ const useStyles = styled((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[16],
     padding: theme.spacing(2, 4, 3),
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    ...getModalStyle(),
   },
 }));
 
@@ -38,6 +42,9 @@ function App() {
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = useState(false)
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const [posts, setPosts] = useState([
         {
@@ -52,12 +59,39 @@ function App() {
         },
         
         ])
+        const signUp = e => {
+            e.preventDefault()
+
+            setOpen(false);
+            }
     
  return (
  <div className="app">
-     <Modal open={open} onClose={() => setOpen(false)}>
+     <Modal open={open} onClose={() => setOpen(false)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
     <div style={modalStyle} className={classes.paper}>
      <h2>Modal Code</h2>
+     <form className="app__signup">
+    <center>
+        <img className="app__headerImage" src="logo192.png" 
+         alt="Header" />
+    </center>
+        <Input placeholder="username"
+            type="text"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+        />
+        <Input placeholder="email"
+            type="text"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+        />
+        <Input placeholder="password"
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+        />
+ <Button type="submit" onClick={signUp}>Sign Up</Button>
+ </form>
     </div>
     </Modal>
  <div className="app__header">
