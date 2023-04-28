@@ -7,7 +7,7 @@ import { Button, Input } from '@mui/material';
 import { auth, createUserWithEmailAndPassword,signInWithEmailAndPassword} from './firebase';
 import ImageUpload from './components/ImageUpload';
 import axios from './axios'
-
+import Pusher from 'pusher-js'
 
 
 function getModalStyle() {
@@ -37,6 +37,9 @@ const useStyles = styled((theme) => ({
 
 
 
+const pusher = new Pusher('56xxxxxxxxxxxxxxxx', {
+  cluster: 'ap2'
+ });
 
 
 
@@ -85,6 +88,13 @@ function App() {
           const fetchPosts = async () => {
             await axios.get("/sync").then(response => setPosts(response.data))
           }
+
+          useEffect(() => {
+            const channel = pusher.subscribe('posts');
+            channel.bind('inserted', (data) => {
+            fetchPosts()
+            });
+            }, [])
 
 
 
