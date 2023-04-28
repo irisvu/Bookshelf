@@ -1,6 +1,8 @@
 import React from 'react'
 import './Post.css'
 import  Avatar  from '@mui/material/Avatar';
+
+
 const Post = ({ username, caption, imageUrl }) => {
  return (
  <div className="post">

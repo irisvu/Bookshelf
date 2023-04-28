@@ -2,9 +2,9 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword  } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import 'firebase/compat/auth';
-import firebase from "firebase/compat/app";
+//import firebase from "firebase/compat/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,7 +26,7 @@ const auth = getAuth(app);
 const firestore = getFirestore(app);
 const storage = getStorage(app);
 
-export { app, auth, firestore, storage,createUserWithEmailAndPassword,signInWithEmailAndPassword   }
+export { app, auth, firestore, storage,createUserWithEmailAndPassword,signInWithEmailAndPassword,ref, uploadBytesResumable, getDownloadURL   }
 
 
 // Initialize Firebas
