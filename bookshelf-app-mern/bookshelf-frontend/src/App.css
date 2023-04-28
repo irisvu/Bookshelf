@@ -58,14 +58,11 @@ app__header, and the app__headerImage class
     transform: translate(-10%, -0%);
    }
 
-   .app__signin {
-    display: flex;
-    flex-direction: column;
-    background-color: whitesmoke;
-}
+ 
 
    .app__posts {
     padding: 20px;
+    bottom: 90%;
    }
 
 
