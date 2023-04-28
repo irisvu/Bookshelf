@@ -6,10 +6,8 @@ import Modal from '@mui/material/Modal';
 import { Button, Input } from '@mui/material';
 import { auth, createUserWithEmailAndPassword,signInWithEmailAndPassword} from './firebase';
 import ImageUpload from './components/ImageUpload';
+import axios from './axios'
 
-//import { getAuth } from 'firebase/auth';
-
-//const auth= getAuth();
 
 
 function getModalStyle() {
@@ -52,6 +50,7 @@ function App() {
     const [password, setPassword] = useState('')
     const [user, setUser] = useState(null)
     const [openSignIn, setOpenSignIn] = useState(false)
+    
 
     const [posts, setPosts] = useState([
         {
@@ -66,6 +65,8 @@ function App() {
         },
         
         ])
+
+
         useEffect(() => {
             const unsubscribe = auth.onAuthStateChanged((authUser) => {
               if (authUser) {
@@ -79,7 +80,22 @@ function App() {
             return () => {
               unsubscribe();
             };
-          }, [user, username]);
+          }, [user, username])
+
+          const fetchPosts = async () => {
+            await axios.get("/sync").then(response => setPosts(response.data))
+          }
+
+
+
+              useEffect(() => {
+
+                fetchPosts()
+              },[])
+
+
+
+
           
           const signUp = (e) => {
             e.preventDefault();
@@ -131,19 +147,23 @@ function App() {
         />
  <Button type="submit" onClick={signUp}>Sign Up</Button>
  </form>
-    </div>
-    </Modal>
-    <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={modalStyle} className={classes.paper}>
-            <form className="app__signup">
-                <center>
-                    <img className="app__headerImage" src="logo192.png" 
-                    alt="Header" />
+</div>
+</Modal>
+<Modal open={openSignIn} onClose={() => setOpenSignIn(false)}  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={modalStyle} className={classes.paper}>
+          <form className="app__signup">
+              <center>
+                  <img className="app__headerImage"
+                       src="logo192.png" 
+                       alt="Header" />
                  </center>
-                     <Input placeholder="email" type="text" value={email}
+                     <Input placeholder="email"
+                             type="text" 
+                             value={email}
                          onChange={e => setEmail(e.target.value)} />
-                     <Input placeholder="password" type="password" 
-                    value={password}
+                     <Input placeholder="password"
+                            type="password" 
+                            value={password}
                         onChange={e => setPassword(e.target.value)} />
                     <Button type="submit" onClick={signIn}>Sign In</Button>
             </form>
@@ -157,25 +177,53 @@ function App() {
                 <Button onClick={() => setOpen(true)}>Sign Up</Button>
             </div>
             )}
-            <div className="app__posts">
-        {posts.map(post => (
-        <Post username={post.username} caption={post.caption} 
-            imageUrl={post.imageUrl} />
+    </div>
+
+    <div className="app__posts">
+             {posts.map(post => (
+              <Post 
+              key={post._id}
+              username={post.username}
+               caption={post.caption} 
+              imageUrl={post.imageUrl} 
+              />
          ))}
- </div>
- {user?.displayName ? <ImageUpload username={user.displayName} /> : 
-<h3 className="app__notLogin">Need to login to upload</h3>}
+
 
     </div>
+        
+    {user?.displayName ? <ImageUpload username={user.displayName} /> : 
+    <h3 className="app__notLogin">Need to login to upload</h3>}
     
     
- <Post />
- <Post />
- <Post />
+
  </div>
  );
 }
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*<div className="app__header">
     {user ? <Button onClick={() => auth.signOut()}>Logout</Button> : 
