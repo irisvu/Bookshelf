@@ -37,8 +37,8 @@ const useStyles = styled((theme) => ({
 
 
 
-const pusher = new Pusher('56xxxxxxxxxxxxxxxx', {
-  cluster: 'ap2'
+const pusher = new Pusher('88dd678dec002dcc670f', {
+  cluster: 'us3'
  });
 
 
