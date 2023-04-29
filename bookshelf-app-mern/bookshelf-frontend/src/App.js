@@ -4,10 +4,13 @@ import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Modal from '@mui/material/Modal';
 import { Button, Input } from '@mui/material';
-import { auth, createUserWithEmailAndPassword,signInWithEmailAndPassword} from './firebase';
+import { auth, createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile} from './firebase';
 import ImageUpload from './components/ImageUpload';
 import axios from './axios'
 import Pusher from 'pusher-js'
+
+
+
 
 
 function getModalStyle() {
@@ -110,13 +113,17 @@ function App() {
           const signUp = (e) => {
             e.preventDefault();
             createUserWithEmailAndPassword(auth,email, password)
-              .then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user);
-                setOpen(false);
+              .then((authUser) => {
+                //const user = authUser.user;
+                //user.updateProfile({displayName: username})
+                updateProfile(authUser.user,{displayName:username})
+                console.log(authUser)
+                
               })
               .catch((error) => {
-                alert(error.message);
+                alert(error.message)
+                setOpen(false)
+                
               });
           }
           const signIn = (e) => {
