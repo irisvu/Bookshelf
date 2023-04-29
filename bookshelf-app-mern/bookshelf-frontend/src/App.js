@@ -1,12 +1,13 @@
 import './App.css';
 import Post from './components/Post';
 import React, { useEffect, useState } from 'react';
-import { styled } from '@mui/material/styles';
+//import { styled } from '@mui/material/styles';
 import Modal from '@mui/material/Modal';
 import { Button, Input } from '@mui/material';
 import { auth, createUserWithEmailAndPassword,signInWithEmailAndPassword} from './firebase';
 import ImageUpload from './components/ImageUpload';
 import axios from './axios'
+import { styled } from '@mui/system';
 import Pusher from 'pusher-js'
 
 
