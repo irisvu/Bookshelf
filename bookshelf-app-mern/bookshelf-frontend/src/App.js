@@ -60,14 +60,14 @@ function App() {
 
     const [posts, setPosts] = useState([
         {
-        username: "TWD",
+        user: "TWD",
         caption: "�Build a Messaging app with MERN Stack�",
-        imageUrl: "https://www.techlifediary.com/wp-content/uploads/2020/06/react-js.png"
+        image: "https://www.techlifediary.com/wp-content/uploads/2020/06/react-js.png"
         },
         {
-        username: "nabendu82",
+        user: "nabendu82",
         caption: "Such a beautiful world",
-        imageUrl: "https://quotefancy.com/media/wallpaper/3840x2160/126631-Charles-Dickens-Quote-And-a-beautiful-world-you-live-in-when-it-is.jpg"
+        image: "https://quotefancy.com/media/wallpaper/3840x2160/126631-Charles-Dickens-Quote-And-a-beautiful-world-you-live-in-when-it-is.jpg"
         },
         
         ])
@@ -114,15 +114,16 @@ function App() {
             e.preventDefault();
             createUserWithEmailAndPassword(auth,email, password)
               .then((authUser) => {
-                //const user = authUser.user;
+                const user = authUser.user;
                 //user.updateProfile({displayName: username})
                 updateProfile(authUser.user,{displayName:username})
                 console.log(authUser)
+                setOpen(false)
                 
               })
               .catch((error) => {
                 alert(error.message)
-                setOpen(false)
+               
                 
               });
           }
@@ -200,9 +201,9 @@ function App() {
              {posts.map(post => (
               <Post 
               key={post._id}
-              username={post.username}
+              username={post.user}
                caption={post.caption} 
-              imageUrl={post.imageUrl} 
+              imageUrl={post.image} 
               />
          ))}
 

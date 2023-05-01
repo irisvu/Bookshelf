@@ -6,7 +6,7 @@ import { storage } from '../firebase'
 
 import {  getStorgae, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 
-import axios from 'axios'
+import axios from '../axios'
 
 import 'firebase/storage'
 
