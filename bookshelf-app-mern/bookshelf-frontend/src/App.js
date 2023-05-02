@@ -88,8 +88,14 @@ function App() {
             };
           }, [user, username])
 
+
+          
           const fetchPosts = async () => {
+
+            console.log("hello world")
+
             await axios.get("/sync").then(response => setPosts(response.data))
+
           }
 
           useEffect(() => {
@@ -118,12 +124,12 @@ function App() {
                 //user.updateProfile({displayName: username})
                 updateProfile(authUser.user,{displayName:username})
                 console.log(authUser)
-                setOpen(false)
+                
                 
               })
               .catch((error) => {
                 alert(error.message)
-               
+                setOpen(false)
                 
               });
           }

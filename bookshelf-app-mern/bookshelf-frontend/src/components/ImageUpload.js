@@ -32,7 +32,7 @@ const handleChange = e => {
 
 const handleUpload = () => {
 
-  const storageRef= ref(storage, 'images/${image.name<http://image.name/><http://image.name/>}')
+  const storageRef= ref(storage, `images/${image.name}`);
 
   //const storageRef = ref(storage, 'images/helloWorld')
 
@@ -75,17 +75,17 @@ const handleUpload = () => {
   },
   () => {
   // Upload completed successfully, now we can get the download URL
-  getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  setUrl(downloadURL);
+  getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+  setUrl(url);
   axios.post('/upload', {
   caption: caption,
   user: username,
-  image: downloadURL
+  image: url
   })
   setProgress(0);
   setCaption("");
   setImage(null);
-  console.log('File available at', downloadURL);
+  console.log('File available at',url);
   });
   }
   );
@@ -94,6 +94,7 @@ const handleUpload = () => {
  return (
  <div className='imageUpload'>
     <progress className='imageUpload__progress' value={progress} max="100" />
+    
       <input
           type="text"
           placeholder="Enter a caption..."
