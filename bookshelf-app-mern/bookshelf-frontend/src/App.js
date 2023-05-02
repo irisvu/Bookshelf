@@ -151,7 +151,7 @@ function App() {
      <h2>Modal Code</h2>
      <form className="app__signup">
     <center>
-        <img className="app__headerImage" src="logo192.png" 
+        <img className="app__headerImage" src="logo192.png"  
          alt="Header" />
     </center>
         <Input placeholder="username"
@@ -203,7 +203,12 @@ function App() {
             )}
     </div>
 
-    <div className="app__posts">
+   
+        
+    {user?.displayName ? <ImageUpload username={user.displayName} /> : 
+    <h3 className="app__notLogin">Need to login to upload</h3>}
+
+<div className="app__posts">
              {posts.map(post => (
               <Post 
               key={post._id}
@@ -215,9 +220,6 @@ function App() {
 
 
     </div>
-        
-    {user?.displayName ? <ImageUpload username={user.displayName} /> : 
-    <h3 className="app__notLogin">Need to login to upload</h3>}
     
     
 
