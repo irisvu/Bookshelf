@@ -4,7 +4,7 @@ import './ImageUpload.css'
 
 import { storage } from '../firebase'
 
-import {  getStorgae, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import {  getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 
 import axios from '../axios'
 
@@ -32,7 +32,9 @@ const handleChange = e => {
 
 const handleUpload = () => {
 
-  const storageRef= ref(storage, 'images/${image.name}')
+  const storageRef= ref(storage, 'images/${image.name<http://image.name/><http://image.name/>}')
+
+  //const storageRef = ref(storage, 'images/helloWorld')
 
   const uploadTask = uploadBytesResumable(storageRef, image)
 
