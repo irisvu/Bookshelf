@@ -93,6 +93,9 @@ const handleUpload = () => {
 }
  return (
  <div className='imageUpload'>
+   <div className="imageUpload__preview">
+      {image && <img src={URL.createObjectURL(image)} alt='Preview' />}
+    </div>
     <progress className='imageUpload__progress' value={progress} max="100" />
     
       <input
